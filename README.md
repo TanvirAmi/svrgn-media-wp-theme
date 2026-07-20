@@ -63,4 +63,4 @@ A custom WordPress theme for SVRGN Media — a boutique creative-performance stu
 
 ## Support
 
-For questions, contact: andyg@svrgnmedia.com
+For questions, contact: tanvir.focus@gmail.com

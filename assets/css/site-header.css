@@ -1,0 +1,179 @@
+/* =========================================================
+   Site-wide header / logo / nav / mobile menu
+   Loaded on every template, after the page-specific stylesheet,
+   so these rules take precedence for header/nav selectors.
+   Relies on the CSS custom properties defined in :root by
+   whichever page stylesheet is also loaded (--ink, --accent, etc.)
+   ========================================================= */
+
+/* ---- Footer nav menu (replaces the static tagline when a "Footer
+   Navigation" menu is assigned in Appearance > Menus) ---- */
+.footer-nav-menu{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1.4rem;
+  list-style:none;
+  margin:0;padding:0;
+}
+.footer-nav-menu li{list-style:none;}
+.footer-nav-menu a{
+  position:relative;
+  padding-bottom:.25rem;
+  color:inherit;
+  text-decoration:none;
+}
+.footer-nav-menu a::after{
+  content:'';
+  position:absolute;left:0;bottom:0;
+  width:0;height:1px;
+  background:var(--accent, #ff3d22);
+  transition:width .35s var(--ease, cubic-bezier(.16,.84,.34,1));
+}
+.footer-nav-menu a:hover::after{width:100%;}
+.footer-nav-menu a:hover{color:var(--paper, #f2efe9);}
+
+/* ---- Logo ---- */
+.logo{display:flex;align-items:center;gap:.65rem;}
+.custom-logo-link{display:flex;align-items:center;}
+.custom-logo-link img{
+  max-height:58px;
+  width:auto;
+  display:block;
+}
+.logo .checker{width:1.9rem;height:1.9rem;}
+.logo-text span{font-size:.66rem;}
+
+/* ---- Nav: kill default <li> bullets, support dropdowns ---- */
+.nav-links li{list-style:none;margin:0;padding:0;position:relative;}
+.nav-links li.menu-item-has-children > a{
+  display:inline-flex;align-items:center;gap:.35rem;
+}
+.nav-links li.menu-item-has-children > a::after{
+  content:'';
+  width:6px;height:6px;
+  border-right:1.5px solid #fff;
+  border-bottom:1.5px solid #fff;
+  transform:rotate(45deg);
+  margin-top:-3px;
+  transition:transform .25s ease;
+}
+.nav-links li.menu-item-has-children.svrgn-submenu-open > a::after{transform:rotate(225deg);margin-top:3px;}
+
+.nav-links .sub-menu{
+  list-style:none;margin:0;
+  position:absolute;top:100%;left:50%;
+  min-width:220px;
+  padding:.6rem 0;
+  background:var(--ink-2, #131316);
+  border:1px solid var(--line-strong, rgba(245,243,239,.22));
+  border-radius:.4rem;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateX(-50%) translateY(8px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+  z-index:200;
+}
+.nav-links li:hover > .sub-menu,
+.nav-links li.svrgn-submenu-open > .sub-menu{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.nav-links .sub-menu li{width:100%;}
+.nav-links .sub-menu a{
+  display:block;
+  padding:.6rem 1.15rem;
+  font-size:.76rem;
+  white-space:nowrap;
+  color:#fff;
+  text-decoration:none;
+}
+.nav-links .sub-menu a::after{display:none;} /* no underline-grow effect inside the dropdown */
+.nav-links .sub-menu a:hover{background:rgba(245,243,239,.06);}
+
+/* Mobile-only "Book a Call" link rendered inside the drawer; hidden on desktop */
+.nav-mobile-cta{display:none;}
+
+/* ---- Hamburger button (mobile only) ---- */
+.hamburger-btn{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  width:40px;height:40px;
+  background:none;border:0;
+  cursor:pointer;
+  position:relative;
+  z-index:300;
+  flex:none;
+}
+.hamburger-btn span{
+  display:block;width:24px;height:2px;
+  background:var(--accent, #ff3d22);
+  transition:transform .3s ease, opacity .3s ease;
+}
+body.svrgn-mobile-nav-open .hamburger-btn span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+body.svrgn-mobile-nav-open .hamburger-btn span:nth-child(2){opacity:0;}
+body.svrgn-mobile-nav-open .hamburger-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ---- Scrim behind the mobile drawer ---- */
+.mobile-nav-scrim{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:240;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+
+/* ---- Mobile drawer ---- */
+@media (max-width:980px){
+  .hamburger-btn{display:flex;}
+  .nav-cta{display:none;}
+
+  .nav-links{
+    display:flex !important;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    position:fixed;
+    top:0;right:0;bottom:0;
+    width:min(86vw,360px);
+    height:100vh;
+    background:var(--ink, #0a0a0b);
+    padding:6.5rem 2rem 2.5rem;
+    overflow-y:auto;
+    transform:translateX(100%);
+    transition:transform .45s cubic-bezier(.65,0,.35,1);
+    z-index:250;
+    box-shadow:-24px 0 60px rgba(0,0,0,.35);
+  }
+  body.svrgn-mobile-nav-open .nav-links{transform:translateX(0);}
+  body.svrgn-mobile-nav-open{overflow:hidden;}
+  body.svrgn-mobile-nav-open .mobile-nav-scrim{display:block;opacity:1;}
+
+  .nav-links li{width:100%;border-bottom:1px solid var(--line, rgba(245,243,239,.12));}
+  .nav-links > a,
+  .nav-links > li > a{
+    display:block;width:100%;
+    padding:1.1rem 0;
+    font-size:1rem;
+  }
+  .nav-links li.menu-item-has-children > a{justify-content:space-between;width:100%;}
+  .nav-links li.menu-item-has-children > a::after{margin-left:auto;}
+
+  .nav-links .sub-menu{
+    position:static;
+    transform:none;
+    opacity:1;visibility:visible;pointer-events:auto;
+    background:transparent;border:0;box-shadow:none;
+    padding:0 0 .75rem 1rem;
+    display:none;
+  }
+  .nav-links li.svrgn-submenu-open > .sub-menu{display:block;}
+
+  .nav-mobile-cta{
+    display:inline-flex;
+    margin-top:1.5rem;
+  }
+}

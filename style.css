@@ -1,14 +1,13 @@
 /*
-Theme Name: SVRGN Media — Performance Creative
+Theme Name: SVRGN Media
 Theme URI: https://svrgnmedia.com
-Author: SVRGN Media
-Author URI: https://svrgnmedia.com
-Description: A boutique creative-performance studio custom WordPress theme for growth-stage ecommerce brands.
+Author: tanvir.pro
+Author URI: https://tanvir.pro
+Description: Custom WordPress theme for SVRGN Media — a boutique creative-performance studio for growth-stage ecommerce brands. Widget-area-per-section homepage, custom post types for Case Studies and Services, and fully widgetized About / Contact pages.
 Version: 1.0.0
-License: GPL v2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 6.0
+Requires PHP: 7.4
 Text Domain: svrgn-media
-Domain Path: /languages
 */
 
-/* All styles are loaded dynamically from assets/css/style.css */
+/* Global styles are enqueued per-template from /assets/css/ — see functions.php */
