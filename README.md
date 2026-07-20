@@ -18,22 +18,6 @@ A custom WordPress theme for SVRGN Media — a boutique creative-performance stu
 3. Configure widgets for each page
 4. Create content using custom post types
 
-## Structure
-
-```
-├── functions.php           # Theme setup
-├── index.php              # Fallback template
-├── inc/                   # Theme functionality
-│   ├── class-theme-setup.php
-│   ├── class-enqueue-assets.php
-│   ├── widgets/           # Widget classes
-│   ├── post-types/        # Custom post types
-│   └── theme-helpers.php
-├── single-templates/      # Custom post type templates
-├── page-templates/        # Custom page templates
-└── assets/               # CSS, JS, images
-```
-
 ## Widgets
 
 ### Homepage
