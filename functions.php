@@ -47,6 +47,11 @@ add_action( 'after_setup_theme', 'svrgn_setup' );
  * --------------------------------------------------------- */
 function svrgn_enqueue_assets() {
 
+	// Self-hosted fonts (see assets/fonts/) — enqueued first and with no
+	// dependencies so the browser can start fetching them immediately,
+	// instead of waiting on fonts.googleapis.com / fonts.gstatic.com.
+	wp_enqueue_style( 'svrgn-fonts', SVRGN_URI . '/assets/fonts/fonts.css', array(), SVRGN_VER );
+
 	// Shared vendor libs (GSAP) — every template uses at least core + ScrollTrigger.
 	wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true );
 	wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', array( 'gsap' ), '3.12.5', true );

@@ -26,6 +26,18 @@ function svrgn_index_label( $position, $total ) {
 }
 
 /**
+ * Returns the configured Contact Form 7 shortcode if the plugin is active
+ * and a shortcode has been set in Customizer → Contact Form, otherwise
+ * an empty string. Templates use this to decide whether to render CF7
+ * or fall back to the theme's built-in contact form.
+ */
+function svrgn_get_cf7_shortcode() {
+	if ( ! function_exists( 'wpcf7_contact_form' ) ) return '';
+	$shortcode = get_theme_mod( 'svrgn_cf7_shortcode', '' );
+	return trim( $shortcode );
+}
+
+/**
  * Shared arrow icon markup used on cards and buttons throughout the theme.
  */
 function svrgn_arrow_icon() {

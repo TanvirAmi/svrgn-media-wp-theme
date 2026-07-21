@@ -43,3 +43,15 @@ function svrgn_handle_contact_submit() {
 }
 add_action( 'wp_ajax_svrgn_contact_submit', 'svrgn_handle_contact_submit' );
 add_action( 'wp_ajax_nopriv_svrgn_contact_submit', 'svrgn_handle_contact_submit' );
+
+/**
+ * Contact Form 7 runs its form content through wpautop() by default,
+ * which wraps loose lines in <p> tags. The recommended form template for
+ * this theme (see the Customizer "Contact Form" description) is already
+ * fully wrapped in <div class="field-row">/.field/.field-input-wrap>
+ * blocks, so autop just injects an unwanted extra <p> inside
+ * .field-input-wrap — that stray <p>'s default margin is what causes the
+ * oversized padding and misaligned focus-underline/border around each
+ * input. Turning autop off fixes it site-wide for all CF7 forms.
+ */
+add_filter( 'wpcf7_autop_or_not', '__return_false' );

@@ -207,6 +207,32 @@
   .form-success p{color:var(--stone-light);max-width:38ch;}
   .contact-form.is-hidden{display:none;}
 
+  /* ---------- Contact Form 7 overrides ----------
+     Paste the recommended form template (given alongside this theme)
+     into your CF7 form's "Form" tab so it reuses the same field-row /
+     field / field-input-wrap / field-underline classes as the built-in
+     form above — the rules above already style those. The rules below
+     handle CF7's own wrapper elements and states. */
+  .cf7-wrap .wpcf7-form-control-wrap{display:block;width:100%;}
+  .cf7-wrap .wpcf7-form-control-wrap:has(select){cursor:pointer;}
+  .cf7-wrap .field-input-wrap > p{margin:0;} /* safety net if wpautop ever re-wraps content */
+  .cf7-wrap .wpcf7-not-valid-tip{
+    display:block;font-family:var(--mono);font-size:.68rem;
+    color:var(--accent);margin-top:.5rem;
+  }
+  .cf7-wrap .field-input-wrap .wpcf7-not-valid{border-color:var(--accent);}
+  .cf7-wrap .screen-reader-response{position:absolute;left:-9999px;}
+  .cf7-wrap .wpcf7-response-output{
+    font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;
+    color:var(--paper);border:1px solid var(--line-strong) !important;
+    border-radius:.3rem;padding:.9rem 1.1rem;margin:1.2rem 0 0;
+  }
+  .cf7-wrap .wpcf7-spinner{
+    margin:0 0 0 .6rem;vertical-align:middle;
+  }
+  .cf7-wrap form.sent .field-input-wrap,
+  .cf7-wrap form.sent button[type="submit"]{opacity:.4;pointer-events:none;}
+
   /* ---------- location beacon (stylized map) ---------- */
   .location-panel{display:flex;flex-direction:column;gap:1.6rem;}
   .beacon-stage{

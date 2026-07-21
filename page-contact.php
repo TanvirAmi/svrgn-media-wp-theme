@@ -39,6 +39,21 @@ get_header();
     <div class="contact-grid">
 
       <div>
+        <?php $cf7_shortcode = svrgn_get_cf7_shortcode(); ?>
+        <?php if ( $cf7_shortcode ) : ?>
+
+        <div class="contact-form cf7-wrap">
+          <?php echo do_shortcode( $cf7_shortcode ); ?>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Message Received</h3>
+          <p>We read every submission personally. Expect to hear back within 24 hours.</p>
+        </div>
+
+        <?php else : ?>
+
         <form class="contact-form" id="contactForm" novalidate>
           <div class="field-row">
             <div class="field">
@@ -109,6 +124,8 @@ get_header();
           <p>We read every submission personally. Expect to hear back within 24 hours.</p>
         </div>
         <p class="form-error" id="formError" style="display:none;color:var(--accent);margin-top:1rem;"></p>
+
+        <?php endif; ?>
       </div>
 
       <div class="location-panel">

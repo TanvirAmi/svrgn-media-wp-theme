@@ -57,6 +57,25 @@ function svrgn_customize_register( $wp_customize ) {
 		'section' => 'svrgn_footer',
 		'label'   => 'Right-side tagline',
 	) );
+
+	/* ---------------- Contact Form ---------------- */
+	$wp_customize->add_section( 'svrgn_contact_form', array(
+		'title'       => 'Contact Form',
+		'description' => 'Optional: use Contact Form 7 instead of the built-in contact form on the Contact page.',
+		'priority'    => 125,
+	) );
+
+	$wp_customize->add_setting( 'svrgn_cf7_shortcode', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'svrgn_cf7_shortcode', array(
+		'type'        => 'text',
+		'section'     => 'svrgn_contact_form',
+		'label'       => 'Contact Form 7 shortcode',
+		'description' => 'Paste the shortcode shown in Contact → Contact Forms for your form, e.g. [contact-form-7 id="123" title="Contact form"]. Requires the Contact Form 7 plugin to be active. Leave blank to keep using the built-in form.',
+	) );
 }
 add_action( 'customize_register', 'svrgn_customize_register' );
 

@@ -166,6 +166,19 @@
     });
   }
 
+  // ---- Contact Form 7: reuse the same themed success panel on submit ----
+  // Fires regardless of which form is present; harmless no-op if CF7 isn't used.
+  document.addEventListener('wpcf7mailsent', function (event) {
+    const cf7Form = event.target;
+    const wrap = cf7Form.closest('.cf7-wrap');
+    const success = document.getElementById('formSuccess');
+    if (wrap) wrap.classList.add('is-hidden');
+    if (success) {
+      success.classList.add('is-visible');
+      gsap.fromTo(success, {opacity:0, y:16}, {opacity:1, y:0, duration:.7, ease:'power3.out'});
+    }
+  });
+
   // ---- magnetic buttons ----
   function initMagneticButton(el, sx, sy) {
     const setX = gsap.quickTo(el, 'x', {duration:.5, ease:'power2.out'});
