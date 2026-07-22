@@ -8,7 +8,7 @@ while ( have_posts() ) : the_post();
 
 <section class="cs-hero">
   <div class="wrap">
-    <a href="<?php echo esc_url( home_url( '/#projects' ) ); ?>" class="cs-back">
+    <a href="<?php $projects_page = get_page_by_path( 'projects' ); echo esc_url( $projects_page ? get_permalink( $projects_page ) : home_url( '/#projects' ) ); ?>" class="cs-back">
       <?php echo svrgn_arrow_icon(); ?>
       Back to selected work
     </a>

@@ -66,7 +66,7 @@ function svrgn_enqueue_assets() {
 		wp_enqueue_script( 'svrgn-home', SVRGN_URI . '/assets/js/home.js', array( 'gsap', 'gsap-scrolltrigger', 'gsap-motionpath', 'gsap-scrollto' ), SVRGN_VER, true );
 		$page_css_handle = 'svrgn-home';
 
-	} elseif ( is_page_template( 'page-templates/case-studies.php' ) || is_singular( 'case_study' ) ) {
+	} elseif ( is_page_template( 'page-templates/case-studies.php' ) || is_page_template( 'page-templates/projects.php' ) || is_singular( 'case_study' ) || is_singular( 'project' ) ) {
 
 		wp_enqueue_style( 'svrgn-case-studies', SVRGN_URI . '/assets/css/case-studies.css', array(), SVRGN_VER );
 		wp_enqueue_script( 'svrgn-case-studies', SVRGN_URI . '/assets/js/case-studies.js', array( 'gsap', 'gsap-scrolltrigger' ), SVRGN_VER, true );
